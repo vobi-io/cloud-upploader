@@ -1,0 +1,19 @@
+{
+  "name": "uploader",
+  "version": "1.0.0",
+  "description": "nodejs cloud storage file uploader",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "file",
+    "uploader"
+  ],
+  "author": "shalva.gegia@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.277.1",
+    "s3": "^4.4.0"
+  }
+}
