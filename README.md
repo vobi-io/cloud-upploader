@@ -1,5 +1,7 @@
 # Node.js Cloud storage file uploader
 
+Painless file uploader to cloud storages for Node.js
+
 ### Install 
 
 ```
