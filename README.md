@@ -12,6 +12,7 @@ npm i -S https://github.com/vobi-io/cloud-upploader
 
 make sure initilize upload 
 you can use `s3` or `google` cloud storage and make sure you pass configs for selected provder
+place these pease of code in your `index.js` or whatever is your main .js file
 
 
 ```js
@@ -19,7 +20,7 @@ const Uploader = require('uploader')
 Uploader.init({ drive: 'amazon', config: {} })
 ```
 
-config for amazon
+config for Amazon S3
 
 ```js
 accessKeyId: 'XXXXXXXXXXXXXXXX',
@@ -31,7 +32,7 @@ bucket: 'bucket-name'
 
 ### Usage
 
-upload file
+Upload file
 
 ```js
 const remotePath = `remote/path/filename`
@@ -39,7 +40,7 @@ const localPath = `usr/local/filename`
 const result = await Uploader.upload(localPath, remotePath)
 ```
 
-get file url
+Get file url
 
 ```js
 const url = Uploader.getUrl(remotePath)
@@ -47,7 +48,7 @@ const url = Uploader.getUrl(remotePath)
 
 
 
-delete file
+Delete file
 
 ```js
 await Uploader.deleteFile(remotePath)
