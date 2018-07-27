@@ -22,7 +22,7 @@ config for amazon
 ```js
 accessKeyId: 'XXXXXXXXXXXXXXXX',
 secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-region: 'eu-west-3',
+region: 'eu-west-3', // choose best for you
 version: 'v4',
 bucket: 'bucket-name'
 ```
