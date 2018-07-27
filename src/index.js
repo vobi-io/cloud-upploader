@@ -19,6 +19,9 @@ var Uploader = (function () {
     },
     getUrl: function(...args) {
       return uploaderService.getUrl(...args)
+    },
+    deleteFile: function(...args) {
+      return uploaderService.deleteFile(...args)
     }
   }
 })()

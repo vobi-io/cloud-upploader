@@ -56,6 +56,33 @@ class S3 {
   getUrl (remotePath) {
     return `https://s3.${this.config.region}.amazonaws.com/${this.config.bucket}/${remotePath}`
   }
+  
+  deleteFile (key) {
+    const self = this
+    var params = {
+      Bucket: this.config.bucket, 
+      Delete: { // required
+        Objects: [ // required
+          {
+            Key: key // required
+          },
+        ],
+      },
+    };
+
+    return new Promise((resolve, reject) => {
+      this.awsS3Client.deleteObjects(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack); // an error occurred
+          return reject(err)
+        }
+        
+        resolve()
+      });
+    })
+
+  }
+    
 
 }
 
