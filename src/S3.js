@@ -1,6 +1,7 @@
 /* eslint handle-callback-err:0 */
 const AWS = require('aws-sdk')
 const s3 = require('s3')
+const fs = require('fs')
 
 class S3 {
   constructor (config) {
@@ -13,6 +14,12 @@ class S3 {
     })
 
     this.client = s3.createClient({
+      // maxAsyncS3: 200,     // this is the default
+      // s3RetryCount: 3,    // this is the default
+      // s3RetryDelay: 1000, // this is the default
+      // multipartUploadThreshold: 9971520, // this is the default (20 MB)
+      // multipartUploadSize: 9028640, // this is the default (15 MB)
+
       s3Client: this.awsS3Client
     })
   }
@@ -32,12 +39,11 @@ class S3 {
       }
       var uploader = self.client.uploadFile(params)
       uploader.on('error', function(err) {
-        // console.error('unable to upload:', err.stack)
         reject(err)
       })
-      // uploader.on('progress', function() {
-      //   console.log('progress', uploader.progressMd5Amount, uploader.progressAmount, uploader.progressTotal)
-      // })
+      uploader.on('progress', function() {
+        // console.log('progress', uploader.progressMd5Amount, uploader.progressAmount, uploader.progressTotal)
+      })
       uploader.on('end', function(url) {
         // console.log('done uploading::', url)
         resolve(url)
@@ -46,10 +52,38 @@ class S3 {
         // console.log('done uploading::', url)
         resolve(url)
       })
-      uploader.on('success', function(url) {
-        // console.log('done uploading::', url)
-        resolve(url)
-      })
+      // uploader.on('success', function(url) {
+      //   // console.log('done uploading::', url)
+      //   resolve(url)
+      // })
+    })
+  }
+
+  putObject (filePath, pathToremote) {
+    var fileData = fs.readFileSync(filePath);     
+    const self = this
+    var s3 = new AWS.S3({
+      accessKeyId: self.config.accessKeyId,
+      secretAccessKey: self.config.secretAccessKey,
+      region: self.config.region,
+      signatureVersion: self.config.version
+    })
+    // AWS.config.loadFromPath({
+     
+    // });
+    var params = {
+      Bucket: self.config.bucket,
+      Key: pathToremote,
+      Body: fileData
+      // ACL:'public-read'
+    }
+    s3.putObject(params, function (err, data) {
+      if (err) {
+        // console.log('Error uploading image: ', err)
+        return err
+      } else {
+        return data
+      }
     })
   }
 
