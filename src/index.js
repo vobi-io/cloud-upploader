@@ -17,6 +17,9 @@ var Uploader = (function () {
     upload: function(...args) {
       return uploaderService.upload(...args)
     },
+    putObject: function(...args) {
+      return uploaderService.putObject(...args)
+    },
     getUrl: function(...args) {
       return uploaderService.getUrl(...args)
     },
