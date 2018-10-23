@@ -59,7 +59,7 @@ class S3 {
     })
   }
 
-  putObject (filePath, pathToremote) {
+  putObject (filePath, pathToremote, args={}) {
     var fileData = fs.readFileSync(filePath);     
     const self = this
     var s3 = new AWS.S3({
@@ -77,6 +77,7 @@ class S3 {
       Body: fileData
       // ACL:'public-read'
     }
+    params = Object.assign(params, args)
     s3.putObject(params, function (err, data) {
       if (err) {
         // console.log('Error uploading image: ', err)
