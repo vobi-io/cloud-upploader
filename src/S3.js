@@ -60,7 +60,8 @@ class S3 {
   }
 
   putObject (filePath, pathToremote, args={}) {
-    var fileData = args.base64 ? args.base64 : fs.readFileSync(filePath);     
+    var fileData = args.base64 ? args.base64 : fs.readFileSync(filePath);   
+    delete args.base64  
     const self = this
     var s3 = new AWS.S3({
       accessKeyId: self.config.accessKeyId,
