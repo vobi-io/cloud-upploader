@@ -16,7 +16,7 @@ place these pease of code in your `index.js` or whatever is your main .js file
 
 
 ```js
-const Uploader = require('uploader')
+const Uploader = require('cloud-uploader')
 Uploader.init({ drive: 'amazon', config: {} })
 ```
 
