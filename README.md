@@ -40,6 +40,14 @@ const localPath = `usr/local/filename`
 const result = await Uploader.upload(localPath, remotePath)
 ```
 
+Upload file base64
+
+```js
+const remotePath = `remote/path/filename`
+const imageData = 'data:image/gif;base64,R0lGODlhPQBEAPeoAJosM//AwO/AwHVYZ/z595kzAP/s7.....'
+const result = await Uploader.upload(null, remotePath, { base64: imageData })
+```
+
 Get file url
 
 ```js
