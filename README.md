@@ -5,7 +5,7 @@ Painless file uploader to cloud storages for Node.js
 ### Install 
 
 ```
-npm i -S https://github.com/vobi-io/cloud-upploader
+npm i -S cloud-uploader
 ```
 
 ### Config
